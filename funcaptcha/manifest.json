@@ -1,0 +1,48 @@
+{
+   "action": {
+      "default_icon": "icon/16.png",
+      "default_popup": "popup.html",
+      "default_title": "CaptCha69: CAPTCHA Solver"
+   },
+   "background": {
+      "service_worker": "background.js",
+      "type": "module"
+   },
+   "content_scripts": [ {
+      "all_frames": true,
+      "js": [ "utils.js", "content.js" ],
+      "match_about_blank": true,
+      "matches": [ "\u003Call_urls>" ],
+      "run_at": "document_start"
+   }, {
+      "all_frames": true,
+      "js": [ "setup.js" ],
+      "match_about_blank": false,
+      "matches": [ "*://captcha69.com/setup" ],
+      "run_at": "document_end"
+   }, {
+      "all_frames": true,
+      "js": [ "funcaptcha_tile.js", "funcaptcha_match.js", "funcaptcha_scrape.js", "funcaptcha_tile_scrape.js", "funcaptcha_match_scrape.js" ],
+      "match_about_blank": true,
+      "matches": [ "*://*.arkoselabs.com/fc/*", "*://*.funcaptcha.com/fc/*" ],
+      "run_at": "document_end"
+   }, {
+      "all_frames": false,
+      "js": [ "funcaptcha_demo.js" ],
+      "match_about_blank": false,
+      "matches": [ "https://captcha69.com/demo-captcha/funcaptcha" ],
+      "run_at": "document_end"
+   } ],
+   "description": "Automatically solve FunCAPTCHA using AI.",
+   "host_permissions": [ "\u003Call_urls>" ],
+   "icons": {
+      "128": "icon/128.png",
+      "16": "icon/16.png",
+      "32": "icon/32.png",
+      "48": "icon/48.png"
+   },
+   "manifest_version": 3,
+   "name": "CaptCha69: CAPTCHA Solver",
+   "permissions": [ "declarativeNetRequest", "contextMenus", "scripting", "storage", "webRequest" ],
+   "version": "0.3.13"
+}
